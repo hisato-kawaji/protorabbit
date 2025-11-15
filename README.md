@@ -1,8 +1,32 @@
+# My Next.js App
+
+This is a simple boilerplate project for building web applications using Next.js. It includes a basic setup for TypeScript and Tailwind CSS.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org/) - The React Framework for Production.
+- [React](https://react.dev/) - A JavaScript library for building user interfaces.
+- [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript that compiles to plain JavaScript.
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapid UI development.
+
+## Directory Structure
+
+- `src/app`: Contains the application's routes and pages.
+- `src/components`: Contains reusable UI components.
+- `src/lib`: Contains utility functions and libraries.
+- `public`: Contains static assets like images and fonts.
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -19,6 +43,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Available Scripts
+
+In the project directory, you can run:
+
+- `npm run dev`: Runs the app in the development mode.
+- `npm run build`: Builds the app for production to the `.next` folder.
+- `npm run start`: Starts the application in production mode.
+- `npm run lint`: Runs ESLint to find and fix problems in your code.
 
 ## Learn More
 
