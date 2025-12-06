@@ -1,13 +1,19 @@
 import React from 'react';
+import type { ChatMessage } from '@/lib/llm/types';
 
-const ChatMessages = () => {
+interface Props {
+  messages: ChatMessage[];
+}
+
+const ChatMessages = ({ messages }: Props) => {
   return (
     <main className="flex-1 overflow-y-auto p-6">
       <div className="space-y-4">
-        {/* Later, this will be dynamic based on props */}
-        <div className="p-4 bg-gray-800 rounded-lg">
-          <p>こんにちは！何かお困りのことはありますか？あなたのアイデアを形にするお手伝いをします。</p>
-        </div>
+        {messages.map((m, idx) => (
+          <div key={idx} className={`p-4 rounded-lg ${m.role === 'user' ? 'bg-blue-900/40' : 'bg-gray-800'}`}>
+            <p className="whitespace-pre-wrap break-words">{m.content}</p>
+          </div>
+        ))}
       </div>
     </main>
   );

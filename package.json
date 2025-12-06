@@ -11,7 +11,11 @@
   "dependencies": {
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.4.2"
+    "next": "15.4.2",
+    "@google/generative-ai": "^0.21.0",
+    "ai": "^3.4.33",
+    "@octokit/rest": "^21.0.2",
+    "@octokit/auth-app": "^7.1.0"
   },
   "devDependencies": {
     "typescript": "^5",

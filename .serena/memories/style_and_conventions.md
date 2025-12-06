@@ -1,0 +1,23 @@
+# コードスタイル/規約
+
+- 言語/フレームワーク
+  - TypeScript(厳格: `strict: true`)
+  - Next.js App Router 構成
+  - React 関数コンポーネント
+- ESLint
+  - Flat Config: `next/core-web-vitals`, `next/typescript`
+  - `npm run lint` で実行
+- モジュール解決/エイリアス
+  - `@/*` -> `./src/*`
+- スタイリング
+  - Tailwind CSS v4 + PostCSS
+  - グローバルは `src/app/globals.css`、コンポーネントにユーティリティクラスを付与
+- 命名/構成
+  - コンポーネント: パスカルケース(`Header.tsx` など)
+  - API ルート: `src/app/api/.../route.ts` (HTTP メソッド名のエクスポート)
+  - ページ: `src/app/<route>/page.tsx`
+- 型/関数
+  - 可能な限り明示的な型付け
+  - ビジネスロジックは `src/lib/**` に分離
+- 秘密情報
+  - 環境変数は `.env.local` に保存し、クライアント公開が必要な場合のみ `NEXT_PUBLIC_*` を使用

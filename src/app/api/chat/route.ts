@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
     // For now, we are not passing the full chat history.
     // This will be implemented in a later step.
-    const responseStream = await generateText(provider, prompt, []);
+    const responseStream = await generateText(provider, prompt, [], { streaming: false });
 
     return responseStream;
   } catch (error) {

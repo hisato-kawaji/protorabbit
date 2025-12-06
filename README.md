@@ -46,17 +46,29 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 ### Environment Variables
 
-To set up environment variables, create a `.env.local` file in the root of the project. You can copy the `.env.example` file if one exists.
+To set up environment variables, create a `.env.local` file in the root of the project. You can copy the `.env.example` file.
 
 ```bash
 cp .env.example .env.local
 ```
 
-Add your environment-specific variables to this file. For example:
+Add your environment-specific variables to this file.
 
-```
-NEXT_PUBLIC_API_URL=https://api.example.com
-```
+#### Required
+- `GEMINI_API_KEY`: Google Generative AI API key
+
+#### GitHub modes
+This app can create repositories either in an Organization (via GitHub App) or under a Personal account (via PAT).
+
+- Auto mode: If `GITHUB_PERSONAL_ACCESS_TOKEN` is set, uses Personal mode; otherwise uses Organization mode. You can override via `GITHUB_MODE`.
+
+- Organization mode (GitHub App):
+  - `GITHUB_APP_ID`
+  - `GITHUB_APP_PRIVATE_KEY` (PEM, escaped with `\n`)
+  - `GITHUB_REPO_OWNER` (org login)
+
+- Personal mode (PAT):
+  - `GITHUB_PERSONAL_ACCESS_TOKEN` (must have `repo` scope)
 
 ### Key Configuration Files
 
@@ -147,3 +159,25 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## GitHub Personal Account Support
+
+To create repositories under your personal account instead of an organization:
+
+1. Create a Personal Access Token (classic) with `repo` scope.
+2. Set `GITHUB_PERSONAL_ACCESS_TOKEN` in `.env.local`.
+3. Optionally set `GITHUB_MODE=user` to force Personal mode.
+4. Call `POST /api/github/create-repo` with `{ name, description? }`.
+
+For organization repositories using a GitHub App, provide `GITHUB_APP_ID`, `GITHUB_APP_PRIVATE_KEY`, and `GITHUB_REPO_OWNER`, or set `GITHUB_MODE=org`.
+### GitHub Authentication (Classic PAT recommended)
+
+If you want to create repositories under your personal account, use a Classic Personal Access Token (PAT).
+
+Steps:
+- Generate a Classic PAT: Settings → Developer settings → Personal access tokens (classic)
+- Scopes: include at least `repo` (for private repo creation). Grant SSO if prompted.
+- Set `.env.local`:
+  - `GITHUB_PERSONAL_ACCESS_TOKEN=<your-classic-pat>`
+  - Optionally `GITHUB_MODE=user`
+
+If you must use a fine-grained PAT, create the repo manually first and use the UI option “既存のリポジトリに適用” to push files and create issues.
